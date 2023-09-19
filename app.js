@@ -17,6 +17,7 @@ window.addEventListener("load", () => {
   renderToDos();
 });
 
+// Add the todos to the site
 const renderToDos = () => {
   const toDosListElement = document.querySelector("#ToDos");
 
@@ -40,6 +41,7 @@ const renderToDos = () => {
   console.log(`To Dos Rendered`, todos);
 };
 
+// add todos to the array when the form is submitted
 addToDoForm.addEventListener("submit", (e) => {
   e.preventDefault();
 

@@ -1,0 +1,90 @@
+:root {
+  --padding: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body,
+main,
+section,
+article,
+header,
+footer {
+  display: flex;
+  width: 100%;
+}
+
+body,
+section,
+.todo-card header,
+main {
+  flex-direction: column;
+}
+
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  min-height: 100vh;
+}
+
+main {
+  justify-content: center;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+#ToDos {
+  display: flex;
+  flex-direction: column;
+  padding: var(--padding);
+  gap: var(--padding);
+}
+
+.no-todos-msg {
+  list-style-type: none;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  padding: var(--padding);
+}
+
+.todo-card {
+  display: flex;
+  flex-direction: row;
+  padding: var(--padding);
+  border: 1px grey solid;
+}
+.todo-card article {
+  display: flex;
+  flex-direction: row;
+  align-items: space-between;
+}
+.todo-card header {
+  flex-grow: 1;
+  justify-content: center;
+}
+.todo-card footer {
+  max-width: 2rem;
+}
+
+.todo-card .del-btn {
+  width: 2rem;
+  aspect-ratio: 1/1;
+}
+.todo-card svg {
+  aspect-ratio: 1/1;
+  max-height: 2rem;
+}

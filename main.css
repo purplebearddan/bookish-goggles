@@ -1,5 +1,6 @@
 :root {
-  --padding: 1rem;
+  --padding: 0.75rem;
+  --xy-padding: var(--padding) calc(var(--padding) * 1.5);
 }
 
 * {
@@ -20,17 +21,20 @@ footer {
 
 body,
 section,
-.todo-card header,
+.task-card header,
 main {
   flex-direction: column;
 }
 
 body {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  position: relative;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-weight: 400;
   min-height: 100vh;
 }
 
 main {
+  height: 100%;
   justify-content: center;
 }
 
@@ -44,16 +48,94 @@ main {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+  opacity: 0;
 }
 
-#ToDos {
+#form-section {
+  position: sticky;
+  top: 0px;
+  /* width: 100%; */
+  left: 0px;
+  z-index: 2;
+  background-color: hsla(0, 0%, 100%, 0.5);
+  padding: var(--padding);
+  border-bottom: 1px solid lightgrey;
+  backdrop-filter: blur(2px);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+}
+
+#addTaskForm {
+  --border-color: lightgrey;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: min(40rem, 100%);
+  border-radius: var(--padding);
+  border: 1px solid var(--border-color);
+}
+
+#addTaskForm:has(input:focus) {
+  --border-color: lightskyblue;
+}
+
+#addTaskForm input,
+#addTaskForm input:focus {
+  display: flex;
+  width: 100%;
+  padding: var(--xy-padding);
+  border: none;
+  outline: none;
+  border-top-left-radius: var(--padding);
+  border-bottom-left-radius: var(--padding);
+}
+#addTaskForm button {
+  display: flex;
+  padding: var(--xy-padding);
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-left: 1px solid var(--border-color);
+  text-align: center;
+}
+
+#taskListSection {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+#Tasks {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
   padding: var(--padding);
   gap: var(--padding);
+  width: 100%;
 }
 
-.no-todos-msg {
+@media screen and (min-width: 40em) {
+  #Tasks {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 60em) {
+  #Tasks {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 80em) {
+  #Tasks {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.no-Tasks-msg {
   list-style-type: none;
   display: flex;
   position: relative;
@@ -61,30 +143,62 @@ main {
   padding: var(--padding);
 }
 
-.todo-card {
+.task-card {
+  --bg-color: hsl(69, 100%, 75%);
+  position: relative;
   display: flex;
   flex-direction: row;
   padding: var(--padding);
-  border: 1px grey solid;
+  border: 1px rgb(192, 192, 192) solid;
+  background-color: var(--bg-color);
+  border-radius: var(--padding);
+  border-top-right-radius: 0;
 }
-.todo-card article {
+
+.task-card article {
   display: flex;
   flex-direction: row;
   align-items: space-between;
 }
-.todo-card header {
+.task-card header {
   flex-grow: 1;
   justify-content: center;
 }
-.todo-card footer {
+
+.task-card .task-id {
+  font-style: italic;
+  color: grey;
+  font-size: 14px;
+}
+.task-card footer {
   max-width: 2rem;
 }
 
-.todo-card .del-btn {
-  width: 2rem;
+.task-card .del-btn {
+  position: absolute;
+  top: calc(var(--padding) * -1);
+  right: calc(var(--padding) * -1);
+  clip-path: circle(0% at center);
+  width: 3rem;
+  pointer-events: none;
+  transition: clip-path 0.3s;
   aspect-ratio: 1/1;
+  background: none;
+  border: none;
+  pointer-events: unset;
+  padding: calc(var(--padding) / 2);
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  background-color: white;
+  border: 1px solid lightgrey;
+  z-index: 1;
 }
-.todo-card svg {
+
+.task-card:hover .del-btn {
+  clip-path: circle(250% at center);
+}
+
+.task-card svg {
   aspect-ratio: 1/1;
   max-height: 2rem;
 }

@@ -4,30 +4,32 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>To</title>
+        <title>Task List</title>
         <link rel="stylesheet" href="main.css">
     </head>
 
     <body>
-
         <main>
-            <section aria-roledescription="add to do form">
-                <h2>Add ToDo</h2>
-                <form id="addToDoForm">
-                    <input type="text" id="taskInput">
+            <section id="form-section" aria-roledescription="add to do form">
+                <h2 class="sr-only">Add Task</h2>
+                <form id="addTaskForm">
+                    <input type="text" id="taskInput" placeholder="Add a task e.g. Clean Kitchen">
+                    <button type="submit" id="addTaskButton" title="Add task">&plus;<span class="sr-only">Add
+                            Task</span>
+                    </button>
                 </form>
-                <button id="addToDoButton">Add ToDo</button>
             </section>
-            <section aria-label="ToDo List">
-                <h2>ToDos</h2>
-                <ul id="ToDos">
-                    <li class="no-todos-msg">No ToDo's found</li>
+            <section id="taskListSection" aria-labelledby="taskListHeader">
+                <h2 id="taskListHeader">Tasks</h2>
+                <ul id="Tasks">
+                    <li class="no-Tasks-msg">No Task's found</li>
 
                 </ul>
             </section>
         </main>
 
-        <script type="module" src="app.js"></script>
+        <script type="module" src="functional.js"></script>
+        <!-- <script type="module" src="oop.js"></script> -->
     </body>
 
 </html>
